@@ -2,14 +2,13 @@ __author__ = 'Fabian Nemazi'
 __email__ = 'fabinema@nmbu.no'
 
 
-
 def bubble_sort(in_data):
-    s_data = list(in_data)
-    for j in reversed(range(len(s_data))):
+    sdata = list(in_data)
+    for j in reversed(range(len(sdata))):
         for k in range(j):
-            if s_data[k + 1] < s_data[k]:
-                s_data[k], s_data[k + 1] = s_data[k + 1], s_data[k]
-    return s_data
+            if sdata[k + 1] < sdata[k]:
+                sdata[k], sdata[k + 1] = sdata[k + 1], sdata[k]
+    return sdata
 
 
 def test_empty():
@@ -36,16 +35,15 @@ def test_original_unchanged():
     bubble_sort(first_list)
     assert first_list == [28, 3, 4, 10, 8]
 
+
 def test_sort_sorted():
     """Testing that sorting works on sorted data."""
     assert bubble_sort([1, 2, 3, 4, 5, 6]) == [1, 2, 3, 4, 5, 6]
 
 
-
 def test_sort_reversed():
     """Testing that sorting works on reverse-sorted data."""
     assert bubble_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-
 
 
 def test_sort_all_equal():

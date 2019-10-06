@@ -7,12 +7,9 @@ __author__ = 'Fabian Nemazi'
 __email__ = 'fabinema@nmbu.no'
 
 
-
-
 def median(data):
     """
     Returns median of data.
-
     :param data: An iterable of containing numbers
     :return: Median of data
     """
@@ -21,7 +18,7 @@ def median(data):
     if n == 0:
         raise ValueError
     return (sdata[n//2] if n % 2 == 1
-        else 0.5 * (sdata[n//2 - 1] + sdata[n//2]))
+            else 0.5 * (sdata[n//2 - 1] + sdata[n//2]))
 
 
 def test_one_element():
@@ -38,7 +35,6 @@ def test_odd_numbers():
     test that check that the correct median is returned for
     a list with odd numbers of elements
     """
-
     test_list = [i for i in range(0, 5)]
     assert median(test_list) == statistics.median(test_list)
 
