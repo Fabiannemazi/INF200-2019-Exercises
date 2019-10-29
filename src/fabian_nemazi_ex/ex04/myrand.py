@@ -27,13 +27,13 @@ class ListRand:
 
 
 if __name__ == '__main__':
-    lcg = LCGRand(200)
-    random = ListRand([5, 12, 77, 1, 199, 2, 6, 9])
+    lcg = LCGRand(5)
+    random = ListRand([1, 4, 10, 2, 2, 6, 9, 2222])
     print("drawing random numbers")
-    fmt = "{:>10} {:>10}"
-    print(fmt.format("ListRNG", "LCG"))
+    form = "{:>10} {:>10}"
+    print(form.format("ListRNG", "LCG"))
     for _ in range(5):
-        print(fmt.format(lcg.rand(), random.rand()))
+        print(form.format(lcg.rand(), random.rand()))
 
 
 

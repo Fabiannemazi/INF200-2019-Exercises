@@ -2,6 +2,7 @@ import pytest
 from myrand import LCGRand, ListRand
 from walker import Walker
 
+
 __author__ = 'Fabian Nemazi'
 __email__ = 'fabinema@nmbu.no'
 
