@@ -44,7 +44,7 @@ class Simulation:
 if __name__ == '__main__':
     print(Simulation(0, 10, 12345).run_simulation(20))
     print(Simulation(0, 10, 12345).run_simulation(20))
-    print(Simulation(0,10, 54321).run_simulation(20))
+    print(Simulation(0, 10, 54321).run_simulation(20))
     print(Simulation(10, 0, 12345).run_simulation(20))
     print(Simulation(10, 0, 12345).run_simulation(20))
     print(Simulation(10, 0, 54321).run_simulation(20))

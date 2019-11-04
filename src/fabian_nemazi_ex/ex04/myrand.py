@@ -26,14 +26,3 @@ class ListRand:
         return random_number
 
 
-if __name__ == '__main__':
-    lcg = LCGRand(5)
-    random = ListRand([1, 4, 10, 2, 2, 6, 9, 2222])
-    print("drawing random numbers")
-    form = "{:>10} {:>10}"
-    print(form.format("ListRNG", "LCG"))
-    for _ in range(5):
-        print(form.format(lcg.rand(), random.rand()))
-
-
-
