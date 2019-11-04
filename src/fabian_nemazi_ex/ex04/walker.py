@@ -26,7 +26,7 @@ class Walker:
 
 def get_home(initial_pos, home_pos):
     walker = Walker(initial_pos, home_pos)
-    while walker.is_at_home() is not True:
+    while not walker.is_at_home():
         walker.move()
     return walker.get_steps()
 
