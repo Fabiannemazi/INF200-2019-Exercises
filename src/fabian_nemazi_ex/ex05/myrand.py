@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+
+__author__ = 'Fabian Nemazi'
+__email__ = 'fabinema@nmbu.no'
+
+
 class LCGRand:
     def __init__(self, seeds):
         self.seeds = seeds

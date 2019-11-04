@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+
+__author__ = 'Fabian Nemazi'
+__email__ = 'fabinema@nmbu.no'
+
 from walker_sim import Walker, Simulation
 
 
@@ -40,7 +45,7 @@ if __name__ == '__main__':
         steps = BoundedSimulation(0, 20, seed=12345,
                                   left_limit=left_boundary,
                                   right_limit=20).run_simulation(20)
-        print('Left boundary: {}: {}'.format(left_bound, steps))
+        print('Left boundary: {}: {}'.format(left_boundary, steps))
 
 
 
