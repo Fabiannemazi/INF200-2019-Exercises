@@ -1,3 +1,5 @@
+Salmaan
+
 import random as rd
 import numpy as np
 
@@ -45,7 +47,7 @@ def median(data):
     s_data = sorted(data)
     n = len(s_data)
     return (s_data[n // 2] if n % 2 == 1
-            else 0.5 * (s_data[n // 2 - 1] + s_data[n // 2]))
+            else 0.5 * (s_data[n // 2 - 1] + s_data[n // 2])) 
 
 
 if __name__ == '__main__':
