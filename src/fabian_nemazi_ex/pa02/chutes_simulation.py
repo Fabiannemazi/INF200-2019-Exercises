@@ -1,6 +1,3 @@
-__author__ = 'Fabian Nemazi', 'Ahmed salaad Ahmed.'
-__email__ = 'Salmaaah@nmbu.no', 'fabinema@nmbu.no'
-
 import random
 
 
@@ -177,3 +174,37 @@ class Simulation:
                 for player_type in frozenset(self.player_field)}
 
 
+if __name__ == "__main__":
+    print('**** First Simulation: Single player, standard board ****')
+    sim = Simulation([Player])
+    print(sim.single_game())
+
+    sim.run_simulation(10)
+    print(sim.players_per_type())
+    print(sim.winners_per_type())
+    print(sim.durations_per_type, "ddd")
+
+    print('\n**** Second Simulation: Four players, standard board ****')
+    sim = Simulation([Player, Player, LazyPlayer, ResilientPlayer])
+    print(sim.single_game())
+
+    sim.run_simulation(10)
+    print(sim.players_per_type())
+    print(sim.winners_per_type())
+    print(sim.durations_per_type)
+
+    print('\n**** Third Simulation: Four players, small board ****')
+    my_board = Board(ladders=[(3, 10), (5, 8)], chutes=[(9, 2)], goal=20)
+    sim = Simulation([Player, Player, LazyPlayer, ResilientPlayer],
+                     board=my_board)
+    print(sim.single_game())
+
+    sim.run_simulation(10)
+    print(sim.players_per_type())
+    print(sim.winners_per_type())
+    print(sim.durations_per_type)
+
+
+
+
+#c = Board(ladders=)
