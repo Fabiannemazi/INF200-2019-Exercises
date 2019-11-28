@@ -49,7 +49,7 @@ def predict_proba(coef, X):
         The predicted class probabilities.
     """
     # Your code here
-    return(self.sigmoid(x) / coef)
+    return(self.sigmoid(x)*(x @ coef))
 
 
 def logistic_gradient(coef, X, y):
