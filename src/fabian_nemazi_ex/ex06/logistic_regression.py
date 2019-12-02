@@ -49,7 +49,7 @@ def predict_proba(coef, X):
         The predicted class probabilities.
     """
     # Your code here
-    return(self.sigmoid(x)*(x @ coef))
+    return sigmoid(X@coef)
 
 
 def logistic_gradient(coef, X, y):
@@ -79,7 +79,7 @@ def logistic_gradient(coef, X, y):
         logistic regression model.
     """
     # Your code here
-    pass
+    return np.transpose(X) @ (predict_proba(coef, X) - y)
 
 
 class LogisticRegression(BaseEstimator, ClassifierMixin):
@@ -133,7 +133,10 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
             A numpy random state object or a seed for a numpy random state object.
         """
         # Your code here
-        pass
+        self.max_iter = max_iter
+        self.tol = tol
+        self.learning_rate = learning_rate
+        self.random_state = random_state
 
     def _has_converged(self, coef, X, y):
         r"""Whether the gradient descent algorithm has converged.
@@ -159,7 +162,7 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
             True if the convergence criteria above is met, False otherwise.
         """
         # Your code here
-        pass
+        return (logistic_gradient(coef, X, y) @ coef) < self.tol
 
     def _fit_gradient_descent(self, coef, X, y):
         r"""Fit the logisitc regression model to the data given initial weights
@@ -190,7 +193,17 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
             The logistic regression weights
         """
         # Your code here
-        pass
+        for _ in range(self.max_iter):
+            coeff = coef - logistic_gradient(coef, X, y)
+            if self._has_converged(coef, X, y) is not True:
+                coeff = logistic_gradient(coeff, X, y)
+            return coeff
+
+
+
+
+
+
 
     def fit(self, X, y):
         """Fit a logistic regression model to the data.
@@ -271,7 +284,7 @@ if __name__ == "__main__":
     # Simulate a random dataset
     X = np.random.standard_normal((100, 5))
     coef = np.random.standard_normal(5)
-    #y = predict_proba(coef, X) > 0.5
+    y = predict_proba(coef, X) > 0.5
 
     # Fit a logistic regression model to the X and y vector
     # Fill in your code here.
