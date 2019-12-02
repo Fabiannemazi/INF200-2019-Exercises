@@ -6,6 +6,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.exceptions import NotFittedError
 from sklearn.utils import check_random_state, check_X_y
+from numpy import linalg as LA
 
 
 def sigmoid(z):
@@ -162,7 +163,7 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
             True if the convergence criteria above is met, False otherwise.
         """
         # Your code here
-        return (logistic_gradient(coef, X, y) @ coef) < self.tol
+        return LA.norm(logistic_gradient(coef, X, y)) < self.tol
 
     def _fit_gradient_descent(self, coef, X, y):
         r"""Fit the logisitc regression model to the data given initial weights
@@ -194,16 +195,10 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
         """
         # Your code here
         for _ in range(self.max_iter):
-            coeff = coef - logistic_gradient(coef, X, y)
             if self._has_converged(coef, X, y) is not True:
-                coeff = logistic_gradient(coeff, X, y)
-            return coeff
-
-
-
-
-
-
+                coef = coef - (self.learning_rate * (
+                    LA.norm(logistic_gradient(coef, X, y))))
+        return coef
 
     def fit(self, X, y):
         """Fit a logistic regression model to the data.
