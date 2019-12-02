@@ -6,7 +6,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.exceptions import NotFittedError
 from sklearn.utils import check_random_state, check_X_y
-from numpy import linalg as LA
+from numpy import linalg as la
 
 
 def sigmoid(z):
@@ -57,11 +57,13 @@ def logistic_gradient(coef, X, y):
     r"""Returns the gradient of a logistic regression model.
     The gradient is given by
     .. math::
-        \nabla_w L(\mathbf{w}; X, \mathbf{y}) = \sum_i \mathbf{x}_i (y_i - \hat{y}_i),
+        \nabla_w L(\mathbf{w}; X, \mathbf{y}) =
+        \sum_i \mathbf{x}_i (y_i - \hat{y}_i),
     or, elementwise,
     .. math::
-        \left[\nabla_w L(\mathbf{w}; X, \mathbf{y})\right]_j = \frac{\partial L}{\partial w_j}
-                                                             = \sum_i X_{ij} (y_i - \hat{y}_i),
+        \left[\nabla_w L(\mathbf{w}; X, \mathbf{y})\right]_j =
+        \frac{\partial L}{\partial w_j}
+        = \sum_i X_{ij} (y_i - \hat{y}_i),
     where :math:`\hat{y}_i` is the predicted value for data point
     :math:`i` and is given by :math:`\sigma(x_i^Tw)`, where
     :math:`\sigma(z)` is the sigmoidal function.
@@ -118,9 +120,10 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
         self, max_iter=1000, tol=1e-5, learning_rate=0.01, random_state=None
     ):
         """Initialise a logistic regression instance.
-        The ``__init__`` method of scikit-learn estimators should not do any
-        logic or input validation. This is all taken care of in the ``fit``
-        method.
+        The ``__init__`` method of scikit-learn estimators
+        should not do any
+        logic or input validation.
+        This is all taken care of in the ``fit``method.
         Parameters
         ----------
         max_iter : int (default=1000)
@@ -131,7 +134,8 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
         learning_rate : float (default=0.01)
             The step-size for the gradient descent updates.
         random_state : np.random.random_state or int or None (default=None)
-            A numpy random state object or a seed for a numpy random state object.
+            A numpy random state object or a seed
+            for a numpy random state object.
         """
         # Your code here
         self.max_iter = max_iter
@@ -163,14 +167,15 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
             True if the convergence criteria above is met, False otherwise.
         """
         # Your code here
-        return LA.norm(logistic_gradient(coef, X, y)) < self.tol
+        return la.norm(logistic_gradient(coef, X, y)) < self.tol
 
     def _fit_gradient_descent(self, coef, X, y):
         r"""Fit the logisitc regression model to the data given initial weights
         Gradient descent works by iteratively applying the following update
         rule
         .. math::
-            \mathbf{w}^{(k)} \gets \mathbf{w}^{(k-1)} - \eta \nabla L(\mathbf{w}^{(k-1)}; X, \mathbf{y}),
+            \mathbf{w}^{(k)} \gets \mathbf{w}^{(k-1)} -
+            \eta \nabla L(\mathbf{w}^{(k-1)}; X, \mathbf{y}),
         where :math:`\mathbf{w}^{(k)}` is the coefficient vector at iteration
         ``k``, :math:`\mathbf{w}^{(k-1)}` is the coefficient vector at
         iteration k-1, :math:`\eta` is the learning rate and
@@ -197,7 +202,7 @@ class LogisticRegression(BaseEstimator, ClassifierMixin):
         for _ in range(self.max_iter):
             if self._has_converged(coef, X, y) is not True:
                 coef = coef - (self.learning_rate * (
-                    LA.norm(logistic_gradient(coef, X, y))))
+                    la.norm(logistic_gradient(coef, X, y))))
         return coef
 
     def fit(self, X, y):
@@ -286,9 +291,9 @@ if __name__ == "__main__":
     # Create a logistic regression object and fit it to the dataset
 
     # Print performance information
-    #print(f"Accuracy: {lr_model.score(X, y)}")
+    # print(f"Accuracy: {lr_model.score(X, y)}")
     print(f"True coefficients: {coef}")
-    #print(f"Learned coefficients: {lr_model.coef_}")
+    # print(f"Learned coefficients: {lr_model.coef_}")
 
 
 
